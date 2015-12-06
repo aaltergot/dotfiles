@@ -1,5 +1,5 @@
 "for osx clipboard: brew vim
 "for X11 clipboard: vim-gui-common (Debian)
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 set hlsearch
