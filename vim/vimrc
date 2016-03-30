@@ -60,6 +60,8 @@ syntax on
 
 "for airline to appear
 set laststatus=2
+"install powerline fonts
+let g:airline_powerline_fonts=1
 
 set splitbelow
 set splitright
