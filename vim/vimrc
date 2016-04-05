@@ -1,13 +1,8 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
+" vundle stuff
+set nocompatible
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
@@ -18,45 +13,38 @@ Plugin 'eagletmt/ghcmod-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/neocomplete.vim'
+Plugin 'neovimhaskell/haskell-vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'ervandew/supertab'
+Plugin 'rking/ag.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+call vundle#end()
+filetype plugin indent on
+" vundle suff end
 
 "for osx clipboard: brew vim
 "for X11 clipboard: vim-gui-common (Debian)
 set clipboard=unnamedplus
 
-"set hlsearch
+set hlsearch
 syntax on
+set ignorecase
+set smartcase
+set number
+set incsearch
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
 
 "for airline to appear
 set laststatus=2
@@ -70,3 +58,83 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+if ! exists("mapleader")
+  let mapleader = ","
+endif
+if ! exists("g:mapleader")
+  let g:mapleader = ","
+endif
+" Leader key timeout
+set tm=2000
+" Allow the normal use of "," by pressing it twice
+noremap ,, ,
+
+" Kill the damned Ex mode.
+nnoremap Q <nop>
+
+" Force redraw
+map <silent> <leader>r :redraw!<CR>
+
+hi Cursor guibg=red
+
+" Open window splits in various places
+nmap <leader>sh :leftabove  vnew<CR>
+nmap <leader>sl :rightbelow vnew<CR>
+nmap <leader>sk :leftabove  new<CR>
+nmap <leader>sj :rightbelow new<CR>
+
+" Close nerdtree after a file is selected
+let NERDTreeQuitOnOpen = 1
+nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
+
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gb :Gblame<CR>
+
+let g:haddock_browser="google-chrome-stable"
+
+let g:haskell_indent_if = 3
+let g:haskell_indent_case = 2
+let g:haskell_indent_let = 4
+let g:haskell_indent_where = 6
+let g:haskell_indent_do = 3
+let g:haskell_indent_in = 1
+let g:haskell_indent_guard = 2
+let g:cabal_indent_section = 2
+
+" Fuzzy find files
+nnoremap <silent> <Leader><space> :CtrlP<CR>
+let g:ctrlp_max_files=0
+let g:ctrlp_show_hidden=1
+let g:ctrlp_custom_ignore = { 'dir': '\v[\/](.git|.cabal-sandbox|.stack-work)$' }
+
+nmap <silent> <leader>ht :GhcModType<CR>
+nmap <silent> <leader>hi :GhcModInfo<CR>
+nmap <silent> <leader>hl :GhcModLint<CR>
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>-
+nmap <silent> <leader>hc :GhcModTypeClear<CR>
+map <leader>tg :!codex update --force<CR>
+
+nnoremap <silent> <leader>d <C-w><C-]>
+
+nmap <silent> <leader>v :noh<CR>
+nmap <silent> <leader><Tab> :tabn<CR>
+nnoremap <leader>bn :bn<CR>
+nnoremap <leader>bp :bp<CR>
+
+set tags=tags;/,codex.tags;/
+
+set completeopt+=longest
+let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
+if has("gui_running")
+  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+  if has("unix")
+    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+  endif
+endif
+
+
