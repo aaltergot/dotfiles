@@ -120,6 +120,7 @@ map <leader>tg :!codex update --force<CR>
 
 nnoremap <silent> <leader>d <C-w><C-]>
 
+nmap <silent> <leader>q :q<CR>
 nmap <silent> <leader>v :noh<CR>
 nmap <silent> <leader><Tab> :tabn<CR>
 nnoremap <leader>bn :bn<CR>
