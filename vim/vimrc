@@ -93,6 +93,7 @@ nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
+nmap <leader>gp :!git push<CR>
 
 let g:haddock_browser="google-chrome-stable"
 
