@@ -2,6 +2,8 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
+set t_Co=256
+let g:airline#extensions#ctrlp#enabled=1
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
@@ -9,19 +11,11 @@ Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'lukerandall/haskellmode-vim'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Shougo/vimproc.vim' "make -f make_unix.mak (post-update hook)
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'neovimhaskell/haskell-vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'ervandew/supertab'
 Plugin 'rking/ag.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-surround'
 
 call vundle#end()
 filetype plugin indent on
@@ -89,39 +83,13 @@ nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
 " Close nerdtree after a file is selected
-let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen = 0
 nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
 
 nmap <leader>gs :Gstatus<CR>
 nmap <leader>gd :Gdiff<CR>
 nmap <leader>gb :Gblame<CR>
 nmap <leader>gp :!git push<CR>
-
-let g:haddock_browser="google-chrome-stable"
-
-let g:haskell_indent_if = 3
-let g:haskell_indent_case = 2
-let g:haskell_indent_let = 4
-let g:haskell_indent_where = 6
-let g:haskell_indent_do = 3
-let g:haskell_indent_in = 1
-let g:haskell_indent_guard = 2
-let g:cabal_indent_section = 2
-
-" Fuzzy find files
-nnoremap <silent> <Leader><space> :CtrlP<CR>
-let g:ctrlp_max_files=0
-let g:ctrlp_show_hidden=1
-let g:ctrlp_custom_ignore = { 'dir': '\v[\/](.git|.cabal-sandbox|.stack-work)$' }
-
-nmap <silent> <leader>ht :GhcModType<CR>
-nmap <silent> <leader>hi :GhcModInfo<CR>
-nmap <silent> <leader>hl :GhcModLint<CR>
-nmap <silent> <leader>hT :GhcModTypeInsert<CR>-
-nmap <silent> <leader>hc :GhcModTypeClear<CR>
-nmap <leader>tg :!codex update --force<CR>
-
-nnoremap <silent> <leader>d <C-w><C-]>
 
 nmap <silent> <leader>q :q<CR>
 nmap <silent> <leader>w :w<CR>
@@ -130,8 +98,6 @@ nmap <silent> <leader><Tab> :tabn<CR>
 nmap <silent> <leader>p<Tab> :tabp<CR>
 nmap <leader>b :bn<CR>
 nmap <leader>pb :bp<CR>
-
-set tags=tags;/,codex.tags;/
 
 set completeopt+=longest
 let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
