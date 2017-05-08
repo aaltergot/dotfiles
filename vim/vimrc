@@ -83,7 +83,7 @@ nmap <leader>sk :leftabove  new<CR>
 nmap <leader>sj :rightbelow new<CR>
 
 " Close nerdtree after a file is selected
-let NERDTreeQuitOnOpen = 0
+let NERDTreeQuitOnOpen = 1
 nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
 
 nmap <leader>gs :Gstatus<CR>

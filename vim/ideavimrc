@@ -11,9 +11,13 @@ noremap ,, ,
 nmap <silent> <leader>v :noh<CR>
 nmap <silent> <leader>q :action CloseEditor<CR>
 nmap <silent> <leader><Tab> :action NextTab<CR>
+nmap <silent> <leader>p<Tab> :action PreviousTab<CR>
 nmap <silent> <leader>gb :action Annotate<CR>
 nmap <silent> <leader>gs :action ChangesView.Commit<CR>
 nmap <silent> <leader>gp :action Vcs.Push<CR>
+nmap <silent> <leader>d :action GotoDeclaration<CR>
+nmap <silent> <leader>hr :action Haskell.RestartStackRepl<CR>
+nmap <silent> <leader>hd :action Haskell.DownloadLibSources<CR>
 
 " ScrollFromSource plugin required
 nmap <silent> <leader>ss :action ScrollFromSource<CR>
