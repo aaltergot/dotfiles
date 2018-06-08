@@ -1,0 +1,112 @@
+set shell=bash
+" vundle stuff
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+set t_Co=256
+let g:airline#extensions#ctrlp#enabled=1
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-commentary'
+Plugin 'ervandew/supertab'
+Plugin 'rking/ag.vim'
+
+call vundle#end()
+filetype plugin indent on
+" vundle suff end
+
+" brew install vim; check +clipboard feature
+set clipboard=unnamed
+
+set hlsearch
+syntax on
+set ignorecase
+set smartcase
+set number
+set incsearch
+set expandtab
+set smarttab
+set shiftwidth=2
+set tabstop=2
+set lbr
+set tw=500
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
+"for airline to appear
+set laststatus=2
+"install powerline fonts
+let g:airline_powerline_fonts=1
+
+set splitbelow
+set splitright
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" With a map leader it's possible to do extra key combinations
+" like <leader>w saves the current file
+if ! exists("mapleader")
+  let mapleader = ","
+endif
+if ! exists("g:mapleader")
+  let g:mapleader = ","
+endif
+" Leader key timeout
+set tm=2000
+" Allow the normal use of "," by pressing it twice
+noremap ,, ,
+
+" Kill the damned Ex mode.
+nnoremap Q <nop>
+
+" Force redraw
+map <silent> <leader>r :redraw!<CR>
+
+hi Cursor guibg=red
+
+" Open window splits in various places
+nmap <leader>sh :leftabove  vnew<CR>
+nmap <leader>sl :rightbelow vnew<CR>
+nmap <leader>sk :leftabove  new<CR>
+nmap <leader>sj :rightbelow new<CR>
+
+" Close nerdtree after a file is selected
+let NERDTreeQuitOnOpen = 1
+nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
+
+nmap <leader>gs :Gstatus<CR>
+nmap <leader>gd :Gdiff<CR>
+nmap <leader>gb :Gblame<CR>
+nmap <leader>gp :!git push<CR>
+
+nmap <silent> <leader>q :q<CR>
+nmap <silent> <leader>w :w<CR>
+nmap <silent> <leader>v :noh<CR>
+nmap <silent> <leader><Tab> :tabn<CR>
+nmap <silent> <leader>p<Tab> :tabp<CR>
+nmap <leader>b :bn<CR>
+nmap <leader>pb :bp<CR>
+
+set completeopt+=longest
+let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
+if has("gui_running")
+  imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+else " no gui
+  if has("unix")
+    inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
+  endif
+endif
+
+
