@@ -1,0 +1,9 @@
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+map ,q :tabclose<CR>
+map ,w :xcmenucmd Save<CR>
+map ,<Tab> :xccmd selectNextTab<CR>
+map ,p<Tab> :xccmd selectPreviousTab<CR>

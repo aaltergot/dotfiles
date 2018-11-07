@@ -109,4 +109,4 @@ else " no gui
   endif
 endif
 
-
+com! FormatJSON %!python -m json.tool
