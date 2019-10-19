@@ -2,6 +2,7 @@ set shell=bash
 " vundle stuff
 set nocompatible
 filetype off
+set enc=utf-8
 set rtp+=~/.vim/bundle/Vundle.vim
 set t_Co=256
 let g:airline#extensions#ctrlp#enabled=1
