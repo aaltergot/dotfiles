@@ -87,9 +87,9 @@ nmap <leader>sj :rightbelow new<CR>
 let NERDTreeQuitOnOpen = 1
 nmap <silent> <leader>f <ESC>:NERDTreeToggle<CR>
 
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gd :Gdiff<CR>
-nmap <leader>gb :Gblame<CR>
+nmap <leader>gs :Git status<CR>
+nmap <leader>gd :Git diff<CR>
+nmap <leader>gb :Git blame<CR>
 nmap <leader>gp :!git push<CR>
 
 nmap <silent> <leader>q :q<CR>
